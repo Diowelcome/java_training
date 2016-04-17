@@ -8,12 +8,21 @@ import org.testng.annotations.Test;
  */
 public class PointTests {
 
+  Point p1 = new Point(-4, -3);
+  Point p2 = new Point(4, 3);
+
   @Test
-  public void testPoint() {
-    Point p1 = new Point(-4, -3);
-    Point p2 = new Point( 4,  3);
+  public void testPoint1() {
     Assert.assertEquals(p1.distance(p2), 10.0);
+  }
+
+  @Test
+  public void testPoint2() {
     Assert.assertEquals(p2.distance(p1), 10.0);
+  }
+
+  @Test
+  public void testPoint3() {
     Assert.assertEquals(p1.distance(p2), p2.distance(p1));
   }
 }

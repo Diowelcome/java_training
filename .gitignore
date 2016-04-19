@@ -11,3 +11,6 @@ gradle-app.setting
 .gradletasknamecache
 
 .idea/workspace.xml
+*.bat
+addressbook-web-tests/gradlew
+addressbook-web-tests/gradle/wrapper/gradle-wrapper.jar

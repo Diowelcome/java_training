@@ -23,7 +23,7 @@ public class ContactCreationTests {
   @Test
   public void testContactCreation() {
     gotoEditAddContactPage();
-    fillContractForm(new ShortContactData("Alexei", "Barancev", "barancev@gmail.com"));
+    fillContactForm(new ShortContactData("Alexei", "Barancev", "barancev@gmail.com"));
     submitContactInfo();
     returnToHomePage();
   }
@@ -36,7 +36,7 @@ public class ContactCreationTests {
     wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
-  private void fillContractForm(ShortContactData shortContactData) {
+  private void fillContactForm(ShortContactData shortContactData) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(shortContactData.getFirstname());

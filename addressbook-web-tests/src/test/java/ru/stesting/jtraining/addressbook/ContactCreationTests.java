@@ -21,7 +21,7 @@ public class ContactCreationTests {
   }
 
   @Test
-  public void ContactCreationTests() {
+  public void testContactCreation() {
     gotoEditAddContactPage();
     fillContractForm(new ShortContactData("Alexei", "Barancev", "barancev@gmail.com"));
     submitContactInfo();

@@ -1,4 +1,4 @@
-package ru.stesting.jtraining.addressbook;
+package ru.stesting.jtraining.addressbook.model;
 
 public class ShortContactData {
   private final String firstname;

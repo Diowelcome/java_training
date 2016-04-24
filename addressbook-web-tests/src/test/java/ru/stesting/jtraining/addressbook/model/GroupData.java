@@ -1,4 +1,4 @@
-package ru.stesting.jtraining.addressbook;
+package ru.stesting.jtraining.addressbook.model;
 
 public class GroupData {
   private final String name;

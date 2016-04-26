@@ -18,6 +18,10 @@ public class HelperBase {
     wd.findElement(locator).click();
   }
 
+  protected boolean isSelected(By locator) {
+    return wd.findElement(locator).isSelected();
+  }
+
   protected void type(By locator, String text) {
     click(locator);
     wd.findElement(locator).clear();

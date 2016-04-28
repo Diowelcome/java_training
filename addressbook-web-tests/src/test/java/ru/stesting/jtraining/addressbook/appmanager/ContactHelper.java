@@ -1,11 +1,8 @@
 package ru.stesting.jtraining.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.stesting.jtraining.addressbook.model.ShortContactData;
 
 /**
@@ -21,16 +18,10 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void fillContactForm(ShortContactData shortContactData, boolean creation) {
+  public void fillContactForm(ShortContactData shortContactData) {
     type(By.name("firstname"), shortContactData.getFirstname());
     type(By.name("lastname"), shortContactData.getLastname());
     type(By.name("email"), shortContactData.getEmail());
-
-    if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ShortContactData.getGroup());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
   }
 
   public void selectContact() {

@@ -1,6 +1,7 @@
 package ru.stesting.jtraining.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stesting.jtraining.addressbook.model.ShortContactData;
 
@@ -9,7 +10,7 @@ import ru.stesting.jtraining.addressbook.model.ShortContactData;
  */
 public class ContactHelper extends HelperBase {
 
-  public ContactHelper(FirefoxDriver wd) {
+  public ContactHelper(WebDriver wd) {
     super(wd);
   }
 

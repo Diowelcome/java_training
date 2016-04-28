@@ -14,7 +14,7 @@ public class ContractModificationTests extends TestBase {
     // пока не обрабатывается
     app.getNavigationHelper().gotoHomePage();
     app.getContactHelper().initContactModification();
-    app.getContactHelper().fillContactForm(new ShortContactData("Alexei_1", "Barancev_1", "barancev_1@gmail.com"));
+    app.getContactHelper().fillContactForm(new ShortContactData("Alexei_1", "Barancev_1", "barancev_1@gmail.com", null), false);
     app.getContactHelper().updateContactInfo();
     app.getNavigationHelper().gotoHomePage();
   }

@@ -2,7 +2,6 @@ package ru.stesting.jtraining.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stesting.jtraining.addressbook.model.GroupData;
 
 /**
@@ -56,6 +55,6 @@ public class GroupHelper extends HelperBase {
   }
 
   public boolean isThereAGroup() {
-   return isElementPresent(By.name("selected[]"));
+    return isElementPresent(By.name("selected[]"));
   }
 }

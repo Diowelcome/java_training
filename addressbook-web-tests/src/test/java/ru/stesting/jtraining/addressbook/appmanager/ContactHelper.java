@@ -25,24 +25,22 @@ public class ContactHelper extends HelperBase {
     type(By.name("firstname"), shortContactData.getFirstname());
     type(By.name("lastname"), shortContactData.getLastname());
     type(By.name("email"), shortContactData.getEmail());
-
-    if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ShortContactData.getGroup());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    if (ShortContactData.getGroup() != null) {
+      if (creation) {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ShortContactData.getGroup());
+      } else {
+        Assert.assertFalse(isElementPresent(By.name("new_group")));
+      }
     }
   }
 
   public void selectContact() {
-    // Пока пытаемся выбрать первую ("гарантированную") запись
-    // Ошибка отсутствия записи пока не обрабатывается
     if (!isSelected(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"))) {
       click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
     }
   }
 
   public void deleteContact() {
-    // Аналогично: пытаемся удалить первую запись
     if (isSelected(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"))) {
       click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
       wd.switchTo().alert().accept();
@@ -55,5 +53,17 @@ public class ContactHelper extends HelperBase {
 
   public void updateContactInfo() {
     click(By.name("update"));
+  }
+
+  public void createContact(NavigationHelper nh, ShortContactData shortContact) {
+    nh.gotoEditAddContactPage();
+    fillContactForm(shortContact, true);
+    submitContactInfo();
+    nh.gotoHomePage();
+
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
   }
 }

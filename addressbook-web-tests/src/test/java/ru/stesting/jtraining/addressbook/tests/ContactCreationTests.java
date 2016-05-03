@@ -14,7 +14,7 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() {
-    app.getContactHelper().createContact(app.getNavigationHelper(), new ShortContactData("Alexei", null, "barancev@gmail.com", null));
+    app.getContactHelper().createContact(new ShortContactData("Alexei", null, "barancev@gmail.com", null));
   }
 
 }

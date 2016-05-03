@@ -11,9 +11,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class HelperBase {
   protected WebDriver wd;
+  protected ApplicationManager app;
 
-  public HelperBase(WebDriver wd) {
-    this.wd = wd;
+  public HelperBase(ApplicationManager app) {
+    this.app = app;
+    this.wd = app.wd;
   }
 
   protected void click(By locator) {

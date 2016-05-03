@@ -13,8 +13,8 @@ import ru.stesting.jtraining.addressbook.model.ShortContactData;
  */
 public class ContactHelper extends HelperBase {
 
-  public ContactHelper(WebDriver wd) {
-    super(wd);
+  public ContactHelper(ApplicationManager app) {
+    super(app);
   }
 
   public void submitContactInfo() {
@@ -55,11 +55,11 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void createContact(NavigationHelper nh, ShortContactData shortContact) {
-    nh.gotoEditAddContactPage();
+  public void createContact(ShortContactData shortContact) {
+    app.getNavigationHelper().gotoEditAddContactPage();
     fillContactForm(shortContact, true);
     submitContactInfo();
-    nh.gotoHomePage();
+    app.getNavigationHelper().gotoHomePage();
 
   }
 

@@ -13,7 +13,7 @@ public class NavigationHelper extends HelperBase {
     super(app);
   }
 
-  public void gotoGroupPage() {
+  public void groupPage() {
 
     if (isElementPresent(By.xpath("//div[@id='content']//h1[.='Groups']"))
 //

@@ -14,7 +14,7 @@ public class ContractModificationTests extends TestBase {
 
   @Test(enabled = false)
   public void testContactModification() {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ShortContactData("Alexei", null, "barancev@gmail.com", null));
     }
@@ -23,7 +23,7 @@ public class ContractModificationTests extends TestBase {
     ShortContactData contact = new ShortContactData(before.get(before.size() - 1).getId(), "Alexei_1", "Barancev_1", "barancev_1@gmail.com", null);
     app.getContactHelper().fillContactForm(contact, false);
     app.getContactHelper().updateContactInfo();
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<ShortContactData> after = app.getContactHelper().getShortContactList();
     Assert.assertEquals(after.size(), before.size());
 

@@ -1,30 +1,24 @@
 package ru.stesting.jtraining.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.Comparator;
-import java.util.List;
-
+import ru.stesting.jtraining.addressbook.model.Contacts;
 import ru.stesting.jtraining.addressbook.model.ShortContactData;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test(enabled = false)
+  @Test
   public void testContactCreation() {
-    app.goTo().gotoHomePage();
-    List<ShortContactData> before = app.getContactHelper().getShortContactList();
-    ShortContactData contact = new ShortContactData("Alexei", "", "barancev@gmail.com", null);
-    app.getContactHelper().createContact(contact);
-    List<ShortContactData> after = app.getContactHelper().getShortContactList();
-    Assert.assertEquals(after.size(), before.size() + 1);
-
-    before.add(contact);
-    Comparator<? super ShortContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-    before.sort(byId);
-    after.sort(byId);
-    Assert.assertEquals(before, after);
-
+    app.goTo().homePage();
+    Contacts before = app.contact().all();
+    ShortContactData contact = new ShortContactData().withFirstname("Alexei").withLastname("Barancev").withEmail("barancev@gmail.com");
+    app.contact().create(contact);
+    Contacts after = app.contact().all();
+    assertThat(after.size(), equalTo(before.size() + 1));
+    assertThat(after, equalTo(
+            before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
 
 }

@@ -3,25 +3,9 @@ package ru.stesting.jtraining.addressbook.model;
 public class ShortContactData {
   private int id;
   private static String group;
-  private final String firstname;
-  private final String lastname;
-  private final String email;
-
-  public ShortContactData(Integer id, String firstname, String lastname, String email, String group) {
-    this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.email = email;
-    this.group = group;
-  }
-
-  public ShortContactData(String firstname, String lastname, String email, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.email = email;
-    this.group = group;
-  }
+  private String firstname;
+  private String lastname;
+  private String email;
 
   public int getId() {
     return id;
@@ -39,6 +23,26 @@ public class ShortContactData {
     return email;
   }
 
+  public ShortContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+
+  public ShortContactData withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
+  }
+
+  public ShortContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ShortContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
   public static String getGroup() {
     return group;
   }
@@ -50,6 +54,7 @@ public class ShortContactData {
 
     ShortContactData that = (ShortContactData) o;
 
+    if (id != that.id) return false;
     if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
     if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
     return email != null ? email.equals(that.email) : that.email == null;
@@ -58,7 +63,8 @@ public class ShortContactData {
 
   @Override
   public int hashCode() {
-    int result = firstname != null ? firstname.hashCode() : 0;
+    int result = id;
+    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     result = 31 * result + (email != null ? email.hashCode() : 0);
     return result;

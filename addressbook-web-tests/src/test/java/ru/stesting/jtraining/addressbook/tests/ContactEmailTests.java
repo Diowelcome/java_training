@@ -38,8 +38,8 @@ public class ContactEmailTests extends TestBase {
             .collect(Collectors.joining("\n"));
   }
 
-  public static String cleaned(String phone) {
-    return phone.replaceAll("\\s", "");
+  public static String cleaned(String email) {
+    return email.replaceAll("\\s", "");
   }
 
 }

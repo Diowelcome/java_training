@@ -2,7 +2,7 @@ package ru.stesting.jtraining.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.stesting.jtraining.addressbook.model.ShortContactData;
+import ru.stesting.jtraining.addressbook.model.ContactData;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -28,13 +28,13 @@ public class ContactPhoneTests extends TestBase {
   public void testContactPhones() {
 //  Уже есть в BeforeMethod
 //    app.goTo().homePage();
-    ShortContactData contact = app.contact().all().iterator().next();
-    ShortContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+    ContactData contact = app.contact().all().iterator().next();
+    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
     assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
   }
 
-  private String mergePhones(ShortContactData contact) {
+  private String mergePhones(ContactData contact) {
     return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
             .stream().filter((s) -> ! s.equals(""))
             .map(ContactPhoneTests::cleaned)

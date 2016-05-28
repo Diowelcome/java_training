@@ -8,31 +8,31 @@ import java.util.Set;
 /**
  * Created by DBorisov on 21.05.2016.
  */
-public class Contacts extends ForwardingSet<ShortContactData> {
+public class Contacts extends ForwardingSet<ContactData> {
 
-  private Set<ShortContactData> delegate;
+  private Set<ContactData> delegate;
 
   public Contacts(Contacts contacts) {
-    this.delegate = new HashSet<ShortContactData>(contacts.delegate());
+    this.delegate = new HashSet<ContactData>(contacts.delegate());
   }
 
   public Contacts() {
-    this.delegate = new HashSet<ShortContactData>();
+    this.delegate = new HashSet<ContactData>();
   }
 
-  public Contacts withAdded(ShortContactData contact) {
+  public Contacts withAdded(ContactData contact) {
     Contacts contacts = new Contacts(this);
     contacts.add(contact);
     return contacts;
   }
 
-  public Contacts without(ShortContactData contact) {
+  public Contacts without(ContactData contact) {
     Contacts contacts = new Contacts(this);
     contacts.remove(contact);
     return contacts;
   }
   @Override
-  protected Set<ShortContactData> delegate() {
+  protected Set<ContactData> delegate() {
     return delegate;
   }
 }

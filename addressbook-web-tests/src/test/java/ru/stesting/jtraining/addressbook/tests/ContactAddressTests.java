@@ -2,10 +2,7 @@ package ru.stesting.jtraining.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.stesting.jtraining.addressbook.model.ShortContactData;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import ru.stesting.jtraining.addressbook.model.ContactData;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -25,8 +22,8 @@ public class ContactAddressTests extends TestBase {
 
   @Test
   public void testContactAddress() {
-      ShortContactData contact = app.contact().all().iterator().next();
-      ShortContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+      ContactData contact = app.contact().all().iterator().next();
+      ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
       assertThat(contact.getAddress().replaceAll(" ", ""), equalTo(contactInfoFromEditForm.getAddress().replaceAll(" ", "")));
     }
 

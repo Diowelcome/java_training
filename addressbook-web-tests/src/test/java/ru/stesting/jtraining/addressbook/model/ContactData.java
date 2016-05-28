@@ -1,6 +1,6 @@
 package ru.stesting.jtraining.addressbook.model;
 
-public class ShortContactData {
+public class ContactData {
   private int id;
   private static String group;
   private String firstname;
@@ -27,12 +27,12 @@ public class ShortContactData {
     return allEmails;
   }
 
-  public ShortContactData withAllPhones(String allPhones) {
+  public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
     return this;
   }
 
-  public ShortContactData withAllEmails(String allEmails) {
+  public ContactData withAllEmails(String allEmails) {
     this.allEmails = allEmails;
     return this;
   }
@@ -41,7 +41,7 @@ public class ShortContactData {
     return address;
   }
 
-  public ShortContactData withAddress(String address) {
+  public ContactData withAddress(String address) {
     this.address = address;
     return this;
   }
@@ -74,7 +74,7 @@ public class ShortContactData {
     return homePhone;
   }
 
-  public ShortContactData withHomePhone(String homePhone) {
+  public ContactData withHomePhone(String homePhone) {
     this.homePhone = homePhone;
     return this;
   }
@@ -83,7 +83,7 @@ public class ShortContactData {
     return mobilePhone;
   }
 
-  public ShortContactData withMobilePhone(String mobilePhone) {
+  public ContactData withMobilePhone(String mobilePhone) {
     this.mobilePhone = mobilePhone;
     return this;
   }
@@ -92,37 +92,37 @@ public class ShortContactData {
     return workPhone;
   }
 
-  public ShortContactData withWorkPhone(String workPhone) {
+  public ContactData withWorkPhone(String workPhone) {
     this.workPhone = workPhone;
     return this;
   }
 
-  public ShortContactData withId(int id) {
+  public ContactData withId(int id) {
     this.id = id;
     return this;
   }
 
-  public ShortContactData withFirstname(String firstname) {
+  public ContactData withFirstname(String firstname) {
     this.firstname = firstname;
     return this;
   }
 
-  public ShortContactData withLastname(String lastname) {
+  public ContactData withLastname(String lastname) {
     this.lastname = lastname;
     return this;
   }
 
-  public ShortContactData withEmail(String email) {
+  public ContactData withEmail(String email) {
     this.email = email;
     return this;
   }
 
-  public ShortContactData withEmail2(String email) {
+  public ContactData withEmail2(String email) {
     this.email2 = email;
     return this;
   }
 
-  public ShortContactData withEmail3(String email) {
+  public ContactData withEmail3(String email) {
     this.email3 = email;
     return this;
   }
@@ -136,7 +136,7 @@ public class ShortContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
 
-    ShortContactData that = (ShortContactData) o;
+    ContactData that = (ContactData) o;
 
     if (id != that.id) return false;
     if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;

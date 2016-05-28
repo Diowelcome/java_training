@@ -3,7 +3,7 @@ package ru.stesting.jtraining.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stesting.jtraining.addressbook.model.Contacts;
-import ru.stesting.jtraining.addressbook.model.ShortContactData;
+import ru.stesting.jtraining.addressbook.model.ContactData;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -18,14 +18,14 @@ public class ContactDeletionTests extends TestBase {
   public  void ensurePreconditions() {
     app.goTo().homePage();
     if (app.contact().all().size() == 0) {
-      app.contact().create(new ShortContactData().withFirstname("Alexei").withEmail("barancev@gmail.com"));
+      app.contact().create(new ContactData().withFirstname("Alexei").withEmail("barancev@gmail.com"));
     }
   }
 
   @Test
   public void testContactDeletion() {
     Contacts before = app.contact().all();
-    ShortContactData deletedContact = before.iterator().next();
+    ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
     Contacts after = app.contact().all();
     assertEquals(after.size(), before.size() - 1);

@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import ru.stesting.jtraining.addressbook.model.ContactData;
 import ru.stesting.jtraining.addressbook.model.Contacts;
-import ru.stesting.jtraining.addressbook.model.ShortContactData;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void fillContactForm(ShortContactData shortContactData, boolean creation) {
+  public void fillContactForm(ContactData shortContactData, boolean creation) {
     type(By.name("firstname"), shortContactData.getFirstname());
     type(By.name("lastname"), shortContactData.getLastname());
     type(By.name("address"), shortContactData.getAddress());
@@ -32,9 +32,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("home"), shortContactData.getHomePhone());
     type(By.name("mobile"), shortContactData.getMobilePhone());
     type(By.name("work"), shortContactData.getWorkPhone());
-    if (ShortContactData.getGroup() != null) {
+    if (ContactData.getGroup() != null) {
       if (creation) {
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ShortContactData.getGroup());
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroup());
       } else {
         Assert.assertFalse(isElementPresent(By.name("new_group")));
       }
@@ -53,11 +53,15 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
   }
 
+  public void openDetailsFormById(int id) {
+    wd.findElement(By.cssSelector("a[href='view.php?id=" + id + "']")).click();
+  }
+
   public void updateContactInfo() {
     click(By.name("update"));
   }
 
-  public void create(ShortContactData shortContact) {
+  public void create(ContactData shortContact) {
     app.goTo().gotoEditAddContactPage();
     fillContactForm(shortContact, true);
     submitContactInfo();
@@ -66,7 +70,7 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  public void modify(ShortContactData contact) {
+  public void modify(ContactData contact) {
     app.contact().initContactModificationById(contact.getId());
     app.contact().fillContactForm(contact, false);
     app.contact().updateContactInfo();
@@ -74,7 +78,7 @@ public class ContactHelper extends HelperBase {
     app.goTo().homePage();
   }
 
-  public void delete(ShortContactData contact) {
+  public void delete(ContactData contact) {
     selectContactById(contact.getId());
     click(By.cssSelector("input[value='Delete']"));
     wd.switchTo().alert().accept();
@@ -82,27 +86,54 @@ public class ContactHelper extends HelperBase {
     app.goTo().homePage();
   }
 
-  public ShortContactData infoFromEditForm(ShortContactData contact) {
+  public ContactData infoFromEditForm(ContactData contact) {
     app.contact().initContactModificationById(contact.getId());
     String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String middlename = wd.findElement(By.name("middlename")).getAttribute("value");
     String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String nickname = wd.findElement(By.name("nickname")).getAttribute("value");
+    String title = wd.findElement(By.name("title")).getAttribute("value");
+    String company = wd.findElement(By.name("company")).getAttribute("value");
     String address = wd.findElement(By.name("address")).getAttribute("value");
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String fax = wd.findElement(By.name("fax")).getAttribute("value");
     String email = wd.findElement(By.name("email")).getAttribute("value");
     String email2 = wd.findElement(By.name("email2")).getAttribute("value");
     String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+    String homepage = wd.findElement(By.name("homepage")).getAttribute("value");
+    String bday = wd.findElement(By.name("bday")).getAttribute("value");
+    String bmonth = wd.findElement(By.name("bmonth")).getAttribute("value");
+    String byear = wd.findElement(By.name("byear")).getAttribute("value");
+    String aday = wd.findElement(By.name("aday")).getAttribute("value");
+    String amonth = wd.findElement(By.name("amonth")).getAttribute("value");
+    String ayear = wd.findElement(By.name("ayear")).getAttribute("value");
+    String address2 = wd.findElement(By.name("address2")).getAttribute("value");
+    String phone2 = wd.findElement(By.name("phone2")).getAttribute("value");
+    String notes = wd.findElement(By.name("notes")).getAttribute("value");
     wd.navigate().back();
-    return new ShortContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
+    return new ContactData().withId(contact.getId()).withFirstname(firstname).withMiddlename(middlename).withLastname(lastname)
+            .withNickname(nickname).withTitle(title).withCompany(company)
             .withAddress(address)
-            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
-            .withEmail(email).withEmail2(email2).withEmail3(email3);
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withFax(fax)
+            .withEmail(email).withEmail2(email2).withEmail3(email3).withHomePage(homepage)
+            .withBday(bday).withBmonth(bmonth).withByear(byear)
+            .withAday(aday).withAmonth(amonth).withAyear(ayear)
+            .withAddress2(address2).withPhone2(phone2).withNotes(notes);
   }
 
-//  public boolean isThereAContact() {
-//    return isElementPresent(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
-//  }
+  public String infoFromDetailsFormAsString(ContactData contact) {
+    app.contact().openDetailsFormById(contact.getId());
+    String text = wd.findElement(By.cssSelector("div[id='content']")).getText();
+    // Убираем лишнее \n от фото, поскольку в EditForm данная информация отсутствует
+    if (isElementPresent(By.xpath("//div[@id='content']/img"))) {
+      String text1 = text.substring(text.indexOf("\n") + 1);
+      String text2 = text1.substring(text1.indexOf("\n") + 1);
+      text = text.substring(0, text.indexOf(text2) - 1) + text2;
+    }
+    return text;
+  }
 
   private Contacts contactCache = null;
 
@@ -120,7 +151,7 @@ public class ContactHelper extends HelperBase {
       String address = cells.get(3).getText();
       String allEmails = cells.get(4).getText();
       String allPhones = cells.get(5).getText();
-      ShortContactData contact = new ShortContactData().withId(id).withFirstname(firstname).withLastname(lastname)
+      ContactData contact = new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
               .withAddress(address)
               .withAllEmails(allEmails).withAllPhones(allPhones);
       contactCache.add(contact);
@@ -129,7 +160,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void createContactWithTestData() {
-    app.contact().create(new ShortContactData().withFirstname("Александр").withLastname("Соколов")
+    app.contact().create(new ContactData().withFirstname("Александр").withLastname("Соколов")
             .withAddress("г. Тверь ул. Желябова 36 кв. 12")
             .withEmail("email@mail.ru").withEmail2("email2@mail.ru").withEmail3("email3@mail.ru")
             .withHomePhone("+7(4822)261299").withMobilePhone("+7(920)9213355").withWorkPhone("+7(4822)835554"));

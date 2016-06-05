@@ -1,48 +1,75 @@
 package ru.stesting.jtraining.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
+import java.io.File;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.stream.Collectors;
 
+@XStreamAlias("contact")
 public class ContactData {
+  @XStreamOmitField
   private int id;
+  @XStreamOmitField
   private static String group;
+  @Expose
   private String firstname;
+  @XStreamOmitField
   private String middlename;
+  @Expose
   private String lastname;
-
+  @XStreamOmitField
   private String nickname;
+  @XStreamOmitField
   private String title;
+  @XStreamOmitField
   private String company;
-
+  @XStreamOmitField
   private String address;
-
+  @XStreamOmitField
   private String homePhone;
+  @XStreamOmitField
   private String mobilePhone;
+  @XStreamOmitField
   private String workPhone;
+  @XStreamOmitField
   private String allPhones;
-
+  @XStreamOmitField
+  private File photo;
+  @XStreamOmitField
   private String fax;
-
+  @Expose
   private String email;
+  @XStreamOmitField
   private String email2;
+  @XStreamOmitField
   private String email3;
+  @XStreamOmitField
   private String allEmails;
-
+  @XStreamOmitField
   private String homePage;
-
+  @XStreamOmitField
   private String bday;
+  @XStreamOmitField
   private String bmonth;
+  @XStreamOmitField
   private String byear;
 
+  @XStreamOmitField
   private String aday;
+  @XStreamOmitField
   private String amonth;
+  @XStreamOmitField
   private String ayear;
-
+  @XStreamOmitField
   private String address2;
+  @XStreamOmitField
   private String phone2;
-
+  @XStreamOmitField
   private String notes;
 
 
@@ -279,6 +306,14 @@ public class ContactData {
     return this;
   }
 
+  public File getPhoto() {
+    return photo;
+  }
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
 
   public String getTitle() {
     return title;

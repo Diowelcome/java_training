@@ -1,0 +1,27 @@
+<list>
+  <contact>
+    <firstname>Alexei</firstname>
+    <lastname>Pupkin</lastname>
+    <email>Alexei.Pupkin@yandex.ru</email>
+  </contact>
+  <contact>
+    <firstname>Alexei</firstname>
+    <lastname>Vasiliev</lastname>
+    <email>Alexei.Vasiliev@yandex.ru</email>
+  </contact>
+  <contact>
+    <firstname>Ivan</firstname>
+    <lastname>Sokolov</lastname>
+    <email>Ivan.Sokolov@email.ru</email>
+  </contact>
+  <contact>
+    <firstname>Konstantin</firstname>
+    <lastname>Pupkin</lastname>
+    <email>Konstantin.Pupkin@yandex.ru</email>
+  </contact>
+  <contact>
+    <firstname>Ivan</firstname>
+    <lastname>Sidorov</lastname>
+    <email>Ivan.Sidorov@gmail.com</email>
+  </contact>
+</list>

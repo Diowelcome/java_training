@@ -1,0 +1,27 @@
+[
+  {
+    "firstname": "Alexander",
+    "lastname": "Pupkin",
+    "email": "Alexander.Pupkin@gmail.com"
+  },
+  {
+    "firstname": "Ivan",
+    "lastname": "Ivanov",
+    "email": "Ivan.Ivanov@yandex.ru"
+  },
+  {
+    "firstname": "Alexander",
+    "lastname": "Ivanov",
+    "email": "Alexander.Ivanov@gmail.com"
+  },
+  {
+    "firstname": "Dmitry",
+    "lastname": "Sidorov",
+    "email": "Dmitry.Sidorov@gmail.com"
+  },
+  {
+    "firstname": "Petr",
+    "lastname": "Petrov",
+    "email": "Petr.Petrov@gmail.com"
+  }
+]

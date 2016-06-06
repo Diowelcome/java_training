@@ -14,3 +14,4 @@ gradle-app.setting
 *.bat
 addressbook-web-tests/gradlew
 addressbook-web-tests/gradle/wrapper/gradle-wrapper.jar
+*.log

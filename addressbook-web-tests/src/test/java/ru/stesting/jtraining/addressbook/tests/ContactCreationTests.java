@@ -57,27 +57,16 @@ public class ContactCreationTests extends TestBase {
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) {
     app.goTo().homePage();
-    Contacts before = app.contact().all();
-    //File photo = new File("src/test/resources/Bond.jpg");
+    Contacts before = app.db().contacts();
     app.contact().create(contact);
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
+    // Берем контактные данные из формы, где инициализируются все переменные перед записью в базу (кроме фото :) )
+    ContactData contactInfoFromEditForm =
+            app.contact().infoFromEditForm(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()));
     assertThat(after.size(), equalTo(before.size() + 1));
-    assertThat(after, equalTo(
-            before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt())
-                    // Метод all получает с формы allEmails, а не email (2/3), поэтому заполняем данную переменную
-                    // В методе equals сравниваем allEmails, поэтому enail (2/3) можно не обнулять
-                    .withAllEmails(mergeEmails(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt())
-                    )))));
+    // Можно было бы добавить фото .withPhoto(contact.getPhoto())
+    // Но фото хранится в базе в виде картинки, а не в виде пути, который задается на входе
+    assertThat(after, equalTo(before.withAdded(contactInfoFromEditForm)));
   }
 
-  protected String mergeEmails(ContactData contact) {
-    return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
-            .stream().filter((s) -> (s != null && ! s.equals("")))
-            .map(ContactCreationTests::cleaned)
-            .collect(Collectors.joining("\n"));
-  }
-
-  public static String cleaned(String email) {
-    return email.replaceAll("\\s", "");
-  }
 }

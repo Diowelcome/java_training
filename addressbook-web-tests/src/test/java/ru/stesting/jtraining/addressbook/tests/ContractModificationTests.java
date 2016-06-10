@@ -16,22 +16,26 @@ public class ContractModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().homePage();
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
+      app.goTo().homePage();
       app.contact().create(new ContactData().withFirstname("Alexei").withEmail("barancev@gmail.com"));
     }
   }
 
   @Test
   public void testContactModification() {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId()).withFirstname("Alexei_1").withLastname("Barancev_1").withEmail("barancev_1@gmail.com");
     app.contact().modify(contact);
-    Contacts  after = app.contact().all();
+    Contacts  after = app.db().contacts();
+    // Берем контактные данные из формы, где инициализируются все переменные перед записью в базу (кроме фото :) )
+    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
     assertEquals(after.size(), before.size());
-    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
+    // Можно было бы добавить фото .withPhoto(contact.getPhoto())
+    // Но фото хранится в базе в виде картинки, а не в виде пути, который задается на входе
+    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contactInfoFromEditForm)));
   }
 
 }

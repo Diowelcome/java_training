@@ -24,14 +24,38 @@ public class ContactHelper extends HelperBase {
 
   public void fillContactForm(ContactData ContactData, boolean creation) {
     type(By.name("firstname"), ContactData.getFirstname());
+    type(By.name("middlename"), ContactData.getMiddlename());
     type(By.name("lastname"), ContactData.getLastname());
+    type(By.name("nickname"), ContactData.getNickname());
+    type(By.name("title"), ContactData.getTitle());
+    type(By.name("company"), ContactData.getCompany());
     type(By.name("address"), ContactData.getAddress());
-    type(By.name("email"), ContactData.getEmail());
-    type(By.name("email2"), ContactData.getEmail2());
-    type(By.name("email3"), ContactData.getEmail3());
     type(By.name("home"), ContactData.getHomePhone());
     type(By.name("mobile"), ContactData.getMobilePhone());
     type(By.name("work"), ContactData.getWorkPhone());
+    type(By.name("fax"), ContactData.getFax());
+    type(By.name("email"), ContactData.getEmail());
+    type(By.name("email2"), ContactData.getEmail2());
+    type(By.name("email3"), ContactData.getEmail3());
+    type(By.name("homepage"), ContactData.getHomePhone());
+    if (ContactData.getBday() != null && ! ContactData.getBday().equals("0")) {
+      new Select(wd.findElement(By.name("bday"))).selectByVisibleText(ContactData.getBday());
+    }
+    if (ContactData.getBmonth() != null) {
+      new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(ContactData.getBmonth());
+    }
+    type(By.name("byear"), ContactData.getByear());
+    if (ContactData.getAday() != null && ! ContactData.getAday().equals("0")) {
+      new Select(wd.findElement(By.name("aday"))).selectByVisibleText(ContactData.getAday());
+    }
+    if (ContactData.getAmonth() != null) {
+      new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(ContactData.getAmonth());
+    }
+    type(By.name("ayear"), ContactData.getAyear());
+    type(By.name("address2"), ContactData.getAddress2());
+    type(By.name("phone2"), ContactData.getPhone2());
+    type(By.name("notes"), ContactData.getNotes());
+
     attach(By.name("photo"), ContactData.getPhoto());
     if (ContactData.getGroup() != null) {
       if (creation) {

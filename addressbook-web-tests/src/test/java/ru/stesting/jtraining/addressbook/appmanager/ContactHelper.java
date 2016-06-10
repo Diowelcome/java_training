@@ -57,13 +57,14 @@ public class ContactHelper extends HelperBase {
     type(By.name("notes"), ContactData.getNotes());
 
     attach(By.name("photo"), ContactData.getPhoto());
-    if (ContactData.getGroup() != null) {
       if (creation) {
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroup());
+    if (ContactData.getGroups().size() > 0) {
+        Assert.assertTrue(ContactData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroups().iterator().next().getName());
+      }
       } else {
         Assert.assertFalse(isElementPresent(By.name("new_group")));
       }
-    }
   }
 
 //  public void selectContact(int index) {

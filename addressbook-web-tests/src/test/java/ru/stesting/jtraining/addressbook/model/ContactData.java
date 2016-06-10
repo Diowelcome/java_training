@@ -7,9 +7,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @XStreamAlias("contact")
@@ -20,10 +18,6 @@ public class ContactData {
   @Id
   @Column(name = "id")
   private int id;
-
-  @XStreamOmitField
-  @Transient
-  private static String group;
 
   @Expose
   @Column(name = "firstname")
@@ -133,6 +127,14 @@ public class ContactData {
   @Type(type = "text")
   private String notes;
 
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
+
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
 
   public String formatEmail(String vEmail) {
     if (!vEmail.equals("")) {
@@ -507,8 +509,9 @@ public class ContactData {
     return this;
   }
 
-  public static String getGroup() {
-    return group;
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
   }
 
   @Override

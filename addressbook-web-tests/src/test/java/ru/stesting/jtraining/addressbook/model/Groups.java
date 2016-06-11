@@ -43,5 +43,17 @@ public class Groups extends ForwardingSet<GroupData> {
     return groups;
   }
 
+  public String allIdAsString() {
+    // Получает строку идентификаторов групп через запятую
+    Groups groups = new Groups(this);
+    String resultIds = "";
+    for (GroupData group: groups) {
+      resultIds = resultIds + ", " + group.getId();
+    }
+    if (resultIds.length() > 0) {
+      resultIds = resultIds.substring(2);
+    }
+    return resultIds;
+  }
 }
 

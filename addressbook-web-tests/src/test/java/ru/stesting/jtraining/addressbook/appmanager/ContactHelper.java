@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stesting.jtraining.addressbook.model.ContactData;
 import ru.stesting.jtraining.addressbook.model.Contacts;
+import ru.stesting.jtraining.addressbook.model.GroupData;
+import ru.stesting.jtraining.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -192,4 +194,25 @@ public class ContactHelper extends HelperBase {
             .withHomePhone("+7(4822)261299").withMobilePhone("+7(920)9213355").withWorkPhone("+7(4822)835554"));
   }
 
+  public void addToGroup(ContactData selectedContact, GroupData selectedGroup) {
+    app.goTo().homePage();
+    selectContactById(selectedContact.getId());
+    // Проверяем, что название группы в выпадающем списке уникально
+    // По идее, можно вычислить индекс группы в списке, но в реальной работе ситуация недопустима
+    // поэтому оставляем правильную, хотя и не очень информативную проверку
+    Assert.assertTrue(app.db().getAllGroupsByName(selectedGroup.getName()).size() == 1);
+    if (selectedGroup != null) {
+      new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(selectedGroup.getName());
+    }
+    click(By.cssSelector("input[value='Add to']"));
+  }
+
+  public void deleteFromGroup(ContactData selectedContact, GroupData deletedGroup) {
+    app.goTo().homePage();
+    if (deletedGroup != null) {
+      new Select(wd.findElement(By.name("group"))).selectByVisibleText(deletedGroup.getName());
+    }
+    selectContactById(selectedContact.getId());
+    click(By.cssSelector("input[name='remove']"));
+  }
 }

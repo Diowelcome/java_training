@@ -3,6 +3,7 @@ package ru.stesting.jtraining.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -130,6 +131,7 @@ public class ContactData {
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "address_in_groups",
           joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  @Cascade(value = org.hibernate.annotations.CascadeType.ALL)
   private Set<GroupData> groups = new HashSet<GroupData>();
 
   public Groups getGroups() {

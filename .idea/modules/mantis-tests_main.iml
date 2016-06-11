@@ -2,7 +2,6 @@
 <module external.linked.project.id="mantis-tests:main" external.linked.project.path="$USER_HOME$/Documents/GitHub/TestRepository/java_training/mantis-tests" external.root.project.path="$USER_HOME$/Documents/GitHub/TestRepository/java_training/mantis-tests" external.system.id="GRADLE" external.system.module.group="" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
     <output url="file://$USER_HOME$/Documents/GitHub/TestRepository/java_training/mantis-tests/build/classes/main" />
-    <exclude-output />
     <content url="file://$USER_HOME$/Documents/GitHub/TestRepository/java_training/mantis-tests/src/main">
       <sourceFolder url="file://$USER_HOME$/Documents/GitHub/TestRepository/java_training/mantis-tests/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/Documents/GitHub/TestRepository/java_training/mantis-tests/src/main/resources" type="java-resource" />

@@ -3,10 +3,13 @@ package ru.stesting.jtraining.mantis.tests;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stesting.jtraining.mantis.appmanager.ApplicationManager;
+import ru.stesting.jtraining.mantis.model.MailMessage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by DBorisov on 24.04.2016.
@@ -28,4 +31,9 @@ public class TestBase {
     app.stop();
   }
 
+  protected String findConfirmationLink(List<MailMessage> mailMessages, String email) {
+    MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
+    VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
+    return regex.getText(mailMessage.text);
+  }
 }

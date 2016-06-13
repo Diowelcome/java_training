@@ -16,7 +16,7 @@ dependencies {
     compile 'org.hibernate:hibernate-core:5.2.0.Final'
 }
 
-test {
+task netTests(type: Test) {
     useTestNG {
         suites 'src/test/resources/testng.xml'
     }

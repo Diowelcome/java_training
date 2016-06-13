@@ -1,5 +1,6 @@
 package ru.stesting.jtraining.mantis.tests;
 
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 import ru.stesting.jtraining.mantis.model.Issue;
 import ru.stesting.jtraining.mantis.model.Project;
@@ -48,6 +49,25 @@ public class SoapTests extends TestBase {
     int projectId = app.soap().addProject("test");
     System.out.println("Создан проект с идентификатором " + String.valueOf(projectId));
   }
+
+  @Test
+  public void testAddNote() throws RemoteException, ServiceException, MalformedURLException {
+    // На данный тест заведен Issue
+    int assosiatedBug = 11;
+    try {
+      skipIfNotFixed(assosiatedBug);
+    //
+    // Код теста
+    //
+    System.out.println("Тест, проверяющий добавление ноты");
+    //
+    //
+    } catch (SkipException e) {
+      e.printStackTrace();
+    }
+  }
+
+
 
 }
 

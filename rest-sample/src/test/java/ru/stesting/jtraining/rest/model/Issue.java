@@ -1,4 +1,4 @@
-package ru.stesting.jtraining.rest;
+package ru.stesting.jtraining.rest.model;
 
 /**
  * Created by DBorisov on 13.06.2016.

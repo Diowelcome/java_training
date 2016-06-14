@@ -1,6 +1,12 @@
 .gradle
-build/
 
+classes/
+dependency-cache/
+distributions/
+libs/
+reports/
+scripts/
+tmp/
 # Ignore Gradle GUI config
 gradle-app.setting
 

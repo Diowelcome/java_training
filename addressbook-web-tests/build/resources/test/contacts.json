@@ -1,0 +1,11 @@
+[
+  {
+    "firstname": "Alexander",
+    "lastname": "Pupkin",
+    "email": "Alexander.Pupkin@gmail.com",
+    "photo": "src/test/resources/Bond.jpg",
+    "aday": 10,
+    "amonth": "May",
+    "ayear": "1990"
+  }
+]

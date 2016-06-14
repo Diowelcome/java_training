@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stesting.jtraining.mantis.tests.RegistrationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-06-13T05:22:40" hostname="DBORISOV" time="36.398">
+  <properties/>
+  <testcase name="testRegistration" classname="ru.stesting.jtraining.mantis.tests.RegistrationTests" time="36.398"/>
+  <system-out><![CDATA[JAMES Remote Administration Tool 2.3.1
+Please enter your login and password
+Login id:
+
+Password:
+
+Login failed for 
+Login id:root
+
+Password:root
+
+Welcome root. HELP for a list of commandsadduser user1465795360664 password
+
+User user1465795360664 addedquit
+]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 2.21.371459 (36d3d07f660ff2bc1bf28a75d1cdabed0983e7c4) on port 13171
+Only local connections are allowed.
+]]></system-err>
+</testsuite>

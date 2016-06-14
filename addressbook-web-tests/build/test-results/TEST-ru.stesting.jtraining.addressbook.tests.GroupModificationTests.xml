@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stesting.jtraining.addressbook.tests.GroupModificationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-06-06T18:58:22" hostname="DBORISOV" time="2.394">
+  <properties/>
+  <testcase name="testGroupModification" classname="ru.stesting.jtraining.addressbook.tests.GroupModificationTests" time="2.394"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0 (Jython 2.7.0 on java1.8.0_77)" generated="20160616 22:31:07.938">
+<suite source="C:\Users\Dborisov\Documents\GitHub\TestRepository\java_training\addressbook-web-tests\src\test\resources\rf" name="Rf" id="s1">
+<suite source="C:\Users\Dborisov\Documents\GitHub\TestRepository\java_training\addressbook-web-tests\src\test\resources\rf\groups.robot" name="Groups" id="s1-s1">
+<kw type="setup" library="ru.stesting.jtraining.addressbook.rf.AddressbookKeywords" name="Init Application Manager">
+<msg level="INFO" timestamp="20160616 22:31:14.418">Starting ChromeDriver 2.21.371459 (36d3d07f660ff2bc1bf28a75d1cdabed0983e7c4) on port 41166
+Only local connections are allowed.</msg>
+<status endtime="20160616 22:31:14.424" starttime="20160616 22:31:08.441" status="PASS"></status>
+</kw>
+<test name="Can Create Group With Valid Data" id="s1-s1-t1">
+<kw library="ru.stesting.jtraining.addressbook.rf.AddressbookKeywords" name="Get Group Count">
+<assign>
+<var>${old_count}</var>
+</assign>
+<msg level="INFO" timestamp="20160616 22:31:15.682">${old_count} = 1</msg>
+<status endtime="20160616 22:31:15.684" starttime="20160616 22:31:14.438" status="PASS"></status>
+</kw>
+<kw library="ru.stesting.jtraining.addressbook.rf.AddressbookKeywords" name="Create Group">
+<arguments>
+<arg>test name</arg>
+<arg>test header</arg>
+<arg>test footer</arg>
+</arguments>
+<status endtime="20160616 22:31:16.863" starttime="20160616 22:31:15.687" status="PASS"></status>
+</kw>
+<kw library="ru.stesting.jtraining.addressbook.rf.AddressbookKeywords" name="Get Group Count">
+<assign>
+<var>${new_count}</var>
+</assign>
+<msg level="INFO" timestamp="20160616 22:31:16.922">${new_count} = 2</msg>
+<status endtime="20160616 22:31:16.924" starttime="20160616 22:31:16.868" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Evaluate">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${old_count} + 1</arg>
+</arguments>
+<assign>
+<var>${expected_count}</var>
+</assign>
+<msg level="INFO" timestamp="20160616 22:31:16.956">${expected_count} = 2</msg>
+<status endtime="20160616 22:31:16.958" starttime="20160616 22:31:16.927" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal As Integers">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${new_count}</arg>
+<arg>${expected_count}</arg>
+</arguments>
+<status endtime="20160616 22:31:16.970" starttime="20160616 22:31:16.960" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20160616 22:31:16.972" starttime="20160616 22:31:14.430" status="PASS"></status>
+</test>
+<kw type="teardown" library="ru.stesting.jtraining.addressbook.rf.AddressbookKeywords" name="Stop Application Manager">
+<status endtime="20160616 22:31:17.805" starttime="20160616 22:31:16.987" status="PASS"></status>
+</kw>
+<status endtime="20160616 22:31:17.806" starttime="20160616 22:31:08.358" status="PASS"></status>
+</suite>
+<status endtime="20160616 22:31:17.836" starttime="20160616 22:31:07.958" status="PASS"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" name="Rf" id="s1">Rf</stat>
+<stat pass="1" fail="0" name="Groups" id="s1-s1">Rf.Groups</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
